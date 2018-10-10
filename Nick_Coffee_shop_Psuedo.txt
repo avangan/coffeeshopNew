@@ -1,0 +1,67 @@
+Function Main
+    Declare Integer CustOrder, OrderMIn, OrderMax, Age, MinAge, MaxAge, zip, ZipCoffeeShop, Attempts, MinAttempts, MaxAttempts, AvgCustAge, ageTotal, countLoop, MaxZip, AttemptCount, AttemptMax
+    
+    Assign AttemptMax = 2
+    Assign OrderMax = 12
+    Assign OrderMin = 1
+    Assign ageTotal = 0
+    Assign countLoop = 0
+    Assign AvgCustAge = 0
+    Assign ZipCoffeeShop = 54984
+    Assign MaxZip = 99999
+    Declare Integer shopZipAccumulator, otherZipAccumulator
+    
+    Assign shopZipAccumulator = 0
+    Assign otherZipAccumulator = 0
+    Assign MaxAge = 110
+    Assign MinAge = 10
+    Output " Welcome to our program to begin please enter a 5 digit zip code to exit please enter zero "
+    Input zip
+    
+    ... If zip is not equal to zero enter the loop . If it is exit. 
+    While zip != 0
+        If Zip <= MaxZip
+            Output " Please enter customers Age "
+            Input Age
+            
+            ... We need to weed out the age with a condition. Here I am using the inverse if age is larger than max age or smaller than minimum age it's the inverse of what I am looking for but bring it thru into our program. 
+            While Age > MaxAge OR Age < MinAge
+                Output " You need to enter an age between 10 and 110 years. Please reenter customers Age "
+                Input Age
+            End
+            Assign ageTotal = age + ageTotal
+            Output " Please enter customer order "
+            Input CustOrder
+            Assign AttemptCount = 0
+            While (((CustOrder > OrderMax) || (CustOrder < OrderMin)) &&  (AttemptCount < AttemptMax))
+                Output " Your order needs to be more than one item but not larger than twelve Please re-enter your order"
+                Input CustOrder
+                Assign AttemptCount = AttemptCount + 1
+            End
+            If CustOrder < 0  &&  AttemptCount ==2
+                Output "You have error"
+            False:
+                Output "Your order is " & CustOrder & " your zip is " & zip
+            End
+            If zip == ZipCoffeeShop
+                Assign shopZipAccumulator = shopZipAccumulator +1
+            False:
+                Assign otherZipAccumulator = otherZipAccumulator +1
+            End
+            Assign countLoop = countLoop + 1
+            Assign AvgCustAge = ageTotal/countLoop
+            If age > 30
+                Output "Customers over the age of 30 put in " & CustOrder & " orders."
+            False:
+                Output "Customers under the age of 30 put in " &  CustOrder & " orders."
+            End
+        False:
+            Output " Please enter a zip code that is less than 5 digits"
+        End
+        Output "The total count for zip that are not the stores zip code is " & otherZipAccumulator & " the zipcodes that are a the same as the cofee shop is " & shopZipAccumulator
+        Output "The customer average age is  " & AvgCustAge
+        Output " To use the program again Please enter a 5 digit zip code to exit please enter zero "
+        Input zip
+    End
+    Output "This concludes our program have a good day"
+End
